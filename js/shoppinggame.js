@@ -12,39 +12,42 @@ let player = {
         return this.score;
     },
     addPoints(points){
-        score+=points;
+        this.score+=points
+        return this.score;
     },
     deductPoints(points){
-        score-=points;
+        this.score-=points
+        return this.score;
     }
-}
+};
 // Define the Product class - write the Constructor function for Product class here
 function Product(id, name, price, expiryDate){
-    id,
-    name,
-    price,
-    expiryDate
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.expiryDate = expiryDate
 }
 // Complete the dateDiff function
-const dateDiff = (date1, date2) => {let diff = date2-date1;
- let days = diff[1];
- return days};
+function dateDiff (date1, date2) {
+    let diff = date1-date2;
+    let days = Math.ceil(diff/86400000);
+    return days};
 
 // Here, use Object.defineProperty to create property - daysToExpire
-Object.defineProperty(Product.prototype, daysToExpire, {
+Object.defineProperty(Product.prototype,'daysToExpire', {
     get() {
-        return dateDiff(this.expiryDate, new Date())
+        return dateDiff(this.expiryDate, new Date());
     }
 });
 // Add method getDetails to Product here
 Product.prototype.getDetails = function(){
-    return `Product Name: ${this.name}, Product Price: ${this.price}`;
+    return `Product Name: ${this.name} , Product Price: ${this.price}`;
 };
 // Define the MagicProduct class here
 function MagicProduct(id, name, price, expiryDate, points, isBonus){
     Product.call(this, id, name, price, expiryDate)
-    points,
-    isBonus
+    this.points = points;
+    this.isBonus = isBonus;
 };
 // Establish inheritance between Product() & MagicProduct() here
 MagicProduct.prototype = Object.create(Product.prototype);
